@@ -89,8 +89,7 @@ function loadCart(){
         });
 
         var node = document.createElement("LI");                 // Create a <li> node
-        var textnode = document.createTextNode(item.name + ". Quanity: " + item.quantity +". Price: " + item.price);         // Create a text node
-        node.appendChild(textnode);                              // Append the text to <li>
+        node.appendChild(mapInfo(item));                              // Append the text to <li>
 
         // create a ul element with id myCart
         document.getElementById("myCart").appendChild(node);
@@ -108,6 +107,106 @@ function loadCart(){
 
     console.log(items);
 }
+function mapInfo(item){
+  let container = document.createElement("DIV");
+  container.className = "list-element-container";
+
+  let result;
+  
+  result = createStuff(item);
+  container.appendChild(result);
+
+  return container;
+}
+
+function createStuff(item){
+  // function will map names and return an element containing all the stuffs
+  let container = document.createElement("DIV"); // <- return this
+  container.className= 'list-element';
+
+  // image div
+  let imagediv = document.createElement("DIV");
+  imagediv.className = "image";
+
+  let img = document.createElement("IMG");
+  //map image
+  switch (item.name){
+
+    case "Spring Rolls":{
+      img.src="images/a1.png";
+    }
+    break;
+    case "Egg Rolls":{
+      img.src="images/a2.png";
+    }
+    break;
+    case "Fried Fish Balls":{
+      img.src="images/a3.png";
+    }
+    break;
+    case "BBQ Pork Banh Mi":{
+      img.src="images/e1.png";
+    }
+    break;
+    case "BBQ Pork Rice":{
+      img.src="images/e2.png";
+    }
+    break;
+    case "Seafood Fried Rice":{
+      img.src="images/e3.png";
+    }
+    break;
+    case "Flan Cake":{
+      img.src="images/d1.png";
+    }
+    break;
+    case "Pork Skin Cake":{
+      img.src="images/d2.jpg";
+    }
+    break;
+    case "Banh Troi Nuoc":{
+      img.src="images/d3.jpg";
+    }
+    break;
+    case "Oreo Oolong Milk Tea":{
+      img.src="images/dr1.jpg";
+    }
+    break;
+    case "Matcha Milk Green Tea":{
+      img.src="images/dr2.jpg";
+    }
+    break;
+    case "Beet Vitamin Drink":{
+      img.src="images/dr3.jpg";
+    }
+    break;
+
+    default:{
+      img.src="images/eaglehub icon 128x128.jpg";
+    }
+  }
+  img.width=100;
+  img.height=100;
+
+  imagediv.appendChild(img);
+  container.appendChild(imagediv);
+
+  // div class info
+  let infodiv = document.createElement("DIV");
+  infodiv.className = "info";
+
+  textnode = document.createElement("SPAN");
+  t = document.createTextNode(item.name + ". Quanity: " + item.quantity +". Price: " + item.price);
+  textnode.appendChild(t);
+
+  infodiv.appendChild(textnode);
+  container.appendChild(infodiv);
+
+  return container;
+}
+
+
+
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -133,7 +232,7 @@ function printanddelete()
   loadCart();
   // Order confirm
   var status = document.getElementById("status");
-  status.innerHTML = "Order Comfirmed. Order #: " + getRandomInt(1000) + " .Total";
+  status.innerHTML = "Order Comfirmed. Order #: " + getRandomInt(1000);
   // empty cart
   cart =[];
   // save

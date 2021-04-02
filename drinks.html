@@ -34,6 +34,7 @@
 
     <!-- Custom styles for this template -->
     <link href="main.css" rel="stylesheet">
+    <script src="main.js"></script>
   </head>
   <body>
 
@@ -67,6 +68,9 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="contactus.html">Contact Us</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="cart.html">Cart</a>
+        </li>
         <!--
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -87,6 +91,7 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     -->
+
     </div>
   </div>
 </nav>
@@ -94,31 +99,28 @@
 <main class="container">
 
   <div class="starter-template text-center py-5 px-3">
-    <h1>Desserts</h1>
+    <h1>Drinks</h1>
     <p class="lead"><br></p>
   </div>
 
   <div class="w3-row-padding">
-  <div class="w3-third">
-    <h2>London</h2>
-    <p>London is the capital city of England.</p>
-    <p>It is the most populous city in the United Kingdom,
-    with a metropolitan area of over 13 million inhabitants.</p>
-  </div>
+    <div class="w3-third">
+      <input type="image" src="images\dr1.jpg" onclick="addToCart('Oreo Oolong Milk Tea',1.99)" width= "220" height="200">
+      <h2>G1. Oreo Oolong Milk Tea</h2>
+      <p>oreo, whole milk, water, sugar, oolong tea</p>
+    </div>
 
-  <div class="w3-third">
-    <h2>Paris</h2>
-    <p>Paris is the capital of France.</p>
-    <p>The Paris area is one of the largest population centers in Europe,
-    with more than 12 million inhabitants.</p>
-  </div>
+    <div class="w3-third">
+      <input type="image" src="images\dr2.jpg" onclick="addToCart('Matcha Milk Green Tea',3.99)" width= "220" height="200">
+      <h2>G2. Matcha Milk Green Tea</h2>
+      <p>macha green tea, whole milk, water, sugar, whipped cream</p>
+    </div>
 
-  <div class="w3-third">
-    <h2>Tokyo</h2>
-    <p>Tokyo is the capital of Japan.</p>
-    <p>It is the center of the Greater Tokyo Area,
-    and the most populous metropolitan area in the world.</p>
-  </div>
+    <div class="w3-third">
+      <input type="image" src="images\dr3.jpg" onclick="addToCart('Beet Vitamin Drink',2.99)" width= "220" height="200">
+      <h2>G3. Beet Vitamin Drink</h2>
+      <p>beet, water, sugar</p>
+    </div>
 </div>
 
 </main><!-- /.container -->
