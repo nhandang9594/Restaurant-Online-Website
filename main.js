@@ -112,7 +112,7 @@ function mapInfo(item){
   container.className = "list-element-container";
 
   let result;
-  
+
   result = createStuff(item);
   container.appendChild(result);
 
@@ -233,6 +233,7 @@ function printanddelete()
   // Order confirm
   var status = document.getElementById("status");
   status.innerHTML = "Order Comfirmed. Order #: " + getRandomInt(1000);
+  
   // empty cart
   cart =[];
   // save
