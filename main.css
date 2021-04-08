@@ -18,3 +18,10 @@ body {
   font-size: 20pt;
   margin-top:30px;
 }
+
+.remove{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20pt;
+  margin-top:30px;
+  color: red;
+}

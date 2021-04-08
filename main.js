@@ -72,7 +72,7 @@ function addToCart(n,p){
 }
 
 
-function loadCart(){
+function loadCart(context){
     let total = 0;
     let items = [];
     // check local storage to load cart data
@@ -89,12 +89,14 @@ function loadCart(){
         });
 
         var node = document.createElement("LI");                 // Create a <li> node
-        node.appendChild(mapInfo(item));                              // Append the text to <li>
+        node.appendChild(mapInfo(item,context));                              // Append the text to <li>
 
         // create a ul element with id myCart
         document.getElementById("myCart").appendChild(node);
 
         total += parseFloat(item.price) * parseFloat(item.quantity);
+
+        // if it is cart page then create delete button for each item
 
     }
 
@@ -107,24 +109,66 @@ function loadCart(){
 
     console.log(items);
 }
-function mapInfo(item){
+
+
+function remove(name) {
+  // trigger when remove button is clicked. Remove item from cart, then re-render the cart.
+
+  let cart = JSON.parse(localStorage.getItem('cart'));
+  let index = -1;
+
+  // find index and splice
+  for (var i = 0; i < cart.length; i++) {
+    let item = JSON.parse(cart[i]);
+
+    if (item.name == name) {
+      cart.splice(i, 1);
+      break;
+    }
+  }
+
+  // save
+  localStorage.setItem("cart", JSON.stringify(cart));
+  // refresh
+  window.location.href = "cart.html";
+}
+
+
+function mapInfo(item,context){
   let container = document.createElement("DIV");
   container.className = "list-element-container";
 
   let result;
 
-  result = createStuff(item);
+  result = createStuff(item,context);
   container.appendChild(result);
 
   return container;
 }
 
-function createStuff(item){
+function createStuff(item, context){
   // function will map names and return an element containing all the stuffs
+
+  console.log("context:" + context);
   let container = document.createElement("DIV"); // <- return this
   container.className= 'list-element';
 
-  // image div
+  // div remove option
+  if (context == 'cartPage'){
+    let removediv = document.createElement("DIV");
+    removediv.className = "remove";
+
+    textnode = document.createElement("SPAN");
+    t = document.createTextNode("X");
+    textnode.appendChild(t);
+
+    // TODO at onclick to element
+    textnode.onclick = function () {remove(item.name);};
+
+    removediv.appendChild(textnode);
+    container.appendChild(removediv);
+  }
+  // div image
   let imagediv = document.createElement("DIV");
   imagediv.className = "image";
 
@@ -222,18 +266,15 @@ function checkout()
     // jump to check out page
     window.location.href = "checkout.html";
 
-
-
-
 }
 
 function printanddelete()
 {
-  loadCart();
+  loadCart("context"); // load cart now have context to reuseability
   // Order confirm
   var status = document.getElementById("status");
   status.innerHTML = "Order Comfirmed. Order #: " + getRandomInt(1000);
-  
+
   // empty cart
   cart =[];
   // save
